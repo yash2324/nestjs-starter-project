@@ -18,6 +18,7 @@ interface AccountCreationAttributes
 @Table({
   tableName: 'accounts',
   timestamps: true,
+  paranoid: true,
 })
 export class Account extends Model<
   AccountAttributes,
@@ -31,14 +32,14 @@ export class Account extends Model<
   declare id: number;
 
   @Column(DataType.STRING)
-  name: string;
+  declare name: string;
 
   @Column({
     type: DataType.STRING,
     unique: true,
   })
-  email: string;
+  declare email: string;
 
   @HasMany(() => Setting)
-  settings: Setting[];
+  declare settings: Setting[];
 }
