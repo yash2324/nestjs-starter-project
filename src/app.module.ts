@@ -11,14 +11,14 @@ import { Setting } from './models/settings.model';
   imports: [
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      uri: process.env.DATABASE_URL,
-      models: [Account, Setting],
-      autoLoadModels: true,
-      synchronize: false,
-      dialectOptions: {
-        ssl: { require: true, rejectUnauthorized: false },
-      },
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'starter',
+      models: [Setting, Account],
     }),
+
     AccountsModule,
     SettingsModule,
   ],
