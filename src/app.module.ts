@@ -6,11 +6,12 @@ import { AccountsModule } from './accounts/accounts.module';
 import { SettingsModule } from './settings/settings.module';
 import { Account } from './models/accounts.model';
 import { Setting } from './models/settings.model';
-import * as dotenv from 'dotenv';
+import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-dotenv.config();
+
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: 'localhost',
