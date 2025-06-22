@@ -7,6 +7,7 @@ import { SettingsModule } from './settings/settings.module';
 import { Account } from './models/accounts.model';
 import { Setting } from './models/settings.model';
 import * as dotenv from 'dotenv';
+import { AuthModule } from './auth/auth.module';
 dotenv.config();
 @Module({
   imports: [
@@ -22,6 +23,7 @@ dotenv.config();
 
     AccountsModule,
     SettingsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

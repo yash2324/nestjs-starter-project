@@ -25,4 +25,12 @@ export class SettingsService {
     if (!setting) throw new NotFoundException();
     return setting.destroy();
   }
+
+  async getSettings(accountId: number) {
+    const settings = await this.settingModel.findAll({
+      where: { account_id: accountId },
+    });
+    if (!settings) throw new NotFoundException();
+    return settings;
+  }
 }
