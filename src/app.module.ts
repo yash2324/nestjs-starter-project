@@ -6,16 +6,17 @@ import { AccountsModule } from './accounts/accounts.module';
 import { SettingsModule } from './settings/settings.module';
 import { Account } from './models/accounts.model';
 import { Setting } from './models/settings.model';
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 @Module({
   imports: [
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'starter',
+      port: parseInt(process.env.DB_PORT || '5432'),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
       models: [Setting, Account],
     }),
 
