@@ -7,13 +7,31 @@ import {
   BelongsTo,
 } from 'sequelize-typescript';
 import { Account } from './accounts.model';
+import { Optional } from 'sequelize';
 
+interface settingsAttributes {
+  id: number;
+  name: string;
+  data_type: 'string' | 'number' | 'boolean' | 'json';
+  account_id: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+}
+interface settingsCreationAttributes
+  extends Optional<
+    settingsAttributes,
+    'id' | 'createdAt' | 'updatedAt' | 'deletedAt'
+  > {}
 @Table({
   tableName: 'settings',
   timestamps: true,
   paranoid: true,
 })
-export class Setting extends Model<Setting> {
+export class Setting extends Model<
+  settingsAttributes,
+  settingsCreationAttributes
+> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
