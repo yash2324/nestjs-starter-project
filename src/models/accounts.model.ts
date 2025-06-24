@@ -24,22 +24,15 @@ export class Account extends Model<
   AccountAttributes,
   AccountCreationAttributes
 > {
-  @Column({
-    type: DataType.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  })
-  declare id: number;
-
   @Column(DataType.STRING)
-  declare name: string;
+  name!: string;
 
   @Column({
     type: DataType.STRING,
     unique: true,
   })
-  declare email: string;
+  email!: string;
 
   @HasMany(() => Setting)
-  declare settings: Setting[];
+  settings!: Setting[];
 }

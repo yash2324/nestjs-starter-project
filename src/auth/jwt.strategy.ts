@@ -6,12 +6,9 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     if (!process.env.JWT_SECRET) {
-      console.log(
-        'JWT_SECRET is required but not found in environment variables',
-      );
       throw new Error('JWT_SECRET environment variable is required');
     }
-    console.log(process.env.JWT_SECRET);
+
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,

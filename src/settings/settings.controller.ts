@@ -20,16 +20,16 @@ export class SettingsController {
   constructor(private readonly settingsService: SettingsService) {}
 
   @Post()
-  create(@Body(ValidateSettingValuePipe) dto: CreateSettingDto) {
-    return this.settingsService.createSetting(dto);
+  create(@Body(ValidateSettingValuePipe) createSettingDto: CreateSettingDto) {
+    return this.settingsService.createSetting(createSettingDto);
   }
 
   @Put(':id')
-  update(
+  updateSetting(
     @Param('id', ParseIntPipe) id: number,
-    @Body(ValidateSettingValuePipe) dto: UpdateSettingDto,
+    @Body(ValidateSettingValuePipe) updateSettingDto: UpdateSettingDto,
   ) {
-    return this.settingsService.updateSetting(id, dto);
+    return this.settingsService.updateSetting(id, updateSettingDto);
   }
 
   @Delete(':id')

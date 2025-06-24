@@ -18,6 +18,12 @@ interface settingsAttributes {
   updatedAt?: Date;
   deletedAt?: Date;
 }
+export enum SettingDataType {
+  STRING = 'string',
+  NUMBER = 'number',
+  BOOLEAN = 'boolean',
+  JSON = 'json',
+}
 interface settingsCreationAttributes
   extends Optional<
     settingsAttributes,
@@ -33,34 +39,27 @@ export class Setting extends Model<
   settingsCreationAttributes
 > {
   @Column({
-    type: DataType.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  })
-  declare id: number;
-
-  @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  declare name: string;
+  name!: string;
 
   @Column({
-    type: DataType.ENUM('string', 'number', 'boolean', 'json'),
+    type: DataType.ENUM(...Object.values(SettingDataType)),
     allowNull: false,
   })
-  declare data_type: 'string' | 'number' | 'boolean' | 'json';
+  data_type!: SettingDataType;
 
   @ForeignKey(() => Account)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  declare account_id: number;
+  account_id!: number;
 
   @BelongsTo(() => Account)
-  declare account: Account;
+  account!: Account;
 
   @Column(DataType.STRING)
-  declare value: string;
+  value!: string;
 }
