@@ -7,15 +7,15 @@ export class AccountsController {
   constructor(private readonly accountsService: AccountsService) {}
 
   @Post()
-  create(@Body() createAccountDto: CreateAccountDto): Promise<Account> {
-    return this.accountsService.createAccount(
+  async create(@Body() createAccountDto: CreateAccountDto): Promise<Account> {
+    return await this.accountsService.createAccount(
       createAccountDto.name,
       createAccountDto.email,
     );
   }
 
   @Get()
-  fetchAll(): Promise<Account[]> {
-    return this.accountsService.getAllAccounts();
+  async fetchAll(): Promise<Account[]> {
+    return await this.accountsService.getAllAccounts();
   }
 }
