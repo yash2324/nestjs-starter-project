@@ -12,7 +12,7 @@ import { Optional } from 'sequelize';
 interface settingsAttributes {
   id: number;
   name: string;
-  data_type: 'string' | 'number' | 'boolean' | 'json';
+  data_type: SettingDataType;
   account_id: number;
   createdAt?: Date;
   updatedAt?: Date;

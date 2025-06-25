@@ -19,7 +19,7 @@ export class AuthService {
     return isEqual(username, validUsername) && isEqual(password, validPassword);
   }
 
-  async login(user: { username: string }) {
+  login(user: { username: string }) {
     const payload = { username: user.username };
     return {
       access_token: this.jwtService.sign(payload),
